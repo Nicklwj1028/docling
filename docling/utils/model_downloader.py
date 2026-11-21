@@ -372,7 +372,8 @@ def download_models(
         assert granite_picture_description.repo_id is not None
         download_hf_model(
             repo_id=granite_picture_description.repo_id,
-            local_dir=output_dir / granite_picture_description.repo_cache_folder,
+            local_dir=output_dir
+            / granite_picture_description.repo_cache_folder,
             force=force,
             progress=progress,
         )
