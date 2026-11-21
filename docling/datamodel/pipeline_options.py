@@ -1037,6 +1037,7 @@ class PictureDescriptionVlmOptions(PictureDescriptionBaseOptions):
             examples=[
                 "HuggingFaceTB/SmolVLM-256M-Instruct",
                 "ibm-granite/granite-vision-3.3-2b",
+                "ibm-granite/granite-vision-4.1-4b",
             ],
         ),
     ]
@@ -1144,16 +1145,9 @@ Uses the HuggingFace SmolVLM-256M-Instruct model, a lightweight vision-language 
 optimized for generating natural language descriptions of images.
 """
 
-# GraniteVision
-granite_picture_description = PictureDescriptionVlmOptions(
-    repo_id="ibm-granite/granite-vision-3.3-2b",
-    prompt="What is shown in this image?",
-)
-"""Pre-configured Granite Vision model options for picture description.
-
-Uses IBM's Granite Vision 3.3-2B model with a custom prompt for generating
-detailed descriptions of image content.
-"""
+# GraniteVision (default: 4.1-4B) — uses the preset path which pins the revision
+# and sets trust_remote_code=True, safe on all supported transformers versions (>=4.42).
+granite_picture_description = PictureDescriptionVlmEngineOptions.from_preset("granite_vision")
 
 
 class NemotronParseOptions(BaseModel):
